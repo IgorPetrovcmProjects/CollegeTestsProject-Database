@@ -32,8 +32,8 @@ $$
         loop_count int; 
         query text;
     begin
-        query := 'drop table if exists "' || id_test || '";
-                  create table "' || id_test || '" ( question text not null, ';
+        query := 'drop table if exists ' || quote_ident(id_test) || ';
+                  create table ' || quote_ident(id_test) || ' ( question text not null, ';
 
         for loop_count in 1 .. possibles_numbers 
         loop
@@ -47,3 +47,20 @@ $$
     end;
 $$;
 
+create or replace procedure drop_all_tables_from_test()
+    language plpgsql
+as 
+$$
+    declare 
+        rec record;
+    begin
+        for rec in (
+                select table_name from information_schema.tables
+                where table_schema = 'main_schema' and table_name != 'users' and table_name != 'tests'
+            )
+
+        loop
+            execute 'drop table ' || quote_ident(rec.table_name);
+        end loop;
+    end;
+$$;

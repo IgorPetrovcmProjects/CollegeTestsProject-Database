@@ -13,3 +13,5 @@ call create_table_from_test('236b13de-73e5-4dc7-ae1a-7a7e9f9cc67e', 10::smallint
 
 select * from information_schema.tables
 where table_schema = 'main_schema'
+
+call drop_all_tables_from_test();
