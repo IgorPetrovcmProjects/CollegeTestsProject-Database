@@ -64,3 +64,8 @@ $$
         end loop;
     end;
 $$;
+
+create role server_user with login password 'server';
+
+grant select, insert, update, delete 
+    on all tables in schema main_schema to server_user
