@@ -1,17 +1,17 @@
 namespace Repository_App.Entities;
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Test 
 {
-    [Required]
     public Guid Id { get; set; }
 
-    [Required]
     public string Title { get; set; }
 
     public string Description { get; set; }
 
-    [Required]
-    public User UserId { get; set; }
+    public Guid UserId { get; set; }
+
+    public User User { get; set; }
 }
