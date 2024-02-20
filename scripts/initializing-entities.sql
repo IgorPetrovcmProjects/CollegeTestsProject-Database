@@ -67,5 +67,5 @@ $$;
 
 create role server_user with login password 'server';
 
-grant select, insert, update, delete 
-    on all tables in schema main_schema to server_user
+grant usage 
+on schema main_schema to server_user 
