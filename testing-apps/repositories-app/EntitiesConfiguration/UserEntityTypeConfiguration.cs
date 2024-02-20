@@ -19,19 +19,23 @@ public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
 
         builder
             .Property(x => x.Login)
-            .HasField("login")
+            .HasColumnName("login")
             .HasMaxLength(18);
 
         builder
             .Property(x => x.Id)
             .IsRequired()
-            .HasField("id")
-            .HasDefaultValue(Guid.NewGuid());
+            .HasColumnName("id");
 
         builder
             .Property(x => x.Password)
             .IsRequired()
-            .HasField("password")
+            .HasColumnName("password")
             .HasMaxLength(18);
+
+        builder 
+            .Property(x => x.Email)
+            .IsRequired()
+            .HasColumnName("email");
     }
 }

@@ -1,0 +1,5 @@
+{
+    "ConnectionStrings": {
+        "DefaultConnection": "Host=localhost;Port=5400;Database=efcore_test;Username=student;Password=root"
+    }
+}

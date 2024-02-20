@@ -3,6 +3,8 @@ namespace Repository_App;
 using Microsoft.EntityFrameworkCore;
 using Repository_App.Entities;
 using Repository_App.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using Microsoft.Extensions.Configuration;
 
 public class ApplicationContext : DbContext
 {
@@ -15,14 +17,19 @@ public class ApplicationContext : DbContext
         Database.EnsureCreated();
     }
 
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=localhost;Port=5400;Database=test1;Username=student;Password=root");
+        optionsBuilder.UseNpgsql(new ConfigurationBuilder()
+                                        .SetBasePath(Environment.CurrentDirectory)
+                                        .AddJsonFile("appsetings.json")
+                                        .Build()
+                                        .GetConnectionString("DefaultConnection"));
     }
 
-    /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new UserEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new TestEntityTypeConfiguration());
-    }*/
+    }
 }

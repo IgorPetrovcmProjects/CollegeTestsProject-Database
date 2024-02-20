@@ -8,25 +8,24 @@ public class TestEntityTypeConfiguration : IEntityTypeConfiguration<Test>
 {
     public void Configure(EntityTypeBuilder<Test> builder)
     {
-        builder.ToTable("tests");
+        builder.ToTable("tests", "main_schema");
 
         builder.HasKey(x => x.Id);
 
         builder
             .Property(x => x.Id)
             .IsRequired()
-            .HasField("id")
-            .HasDefaultValue(Guid.NewGuid());
+            .HasColumnName("id");
 
         builder
             .Property(x => x.Title)
             .IsRequired()
-            .HasField("title");
+            .HasColumnName("title");
 
 
         builder
             .Property(x => x.Description)
             .IsRequired()
-            .HasField("description");
+            .HasColumnName("description");
     }
 }
