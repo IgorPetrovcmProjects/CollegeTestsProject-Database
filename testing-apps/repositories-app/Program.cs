@@ -14,6 +14,5 @@ public class Program
 
 		User user = new User();
         
-        UserRepository rep = new UserRepository(new ApplicationContext(@"C:\Users\Honor\Desktop\MyProjects\CollegeTestsProject\CollegeTestsProject-Database\testing-apps\repositories-app"));
     }
 }

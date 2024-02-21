@@ -15,26 +15,30 @@ public class ApplicationContext : DbContext
 
     public DbSet<Test> Tests => Set<Test>();
 
-    public ApplicationContext(string pathToConnectionFile)
+    /*public ApplicationContext(string pathToConnectionFile)
     {
         PathToConnectionFile = pathToConnectionFile;
 
         Database.EnsureCreated();
-    }
+    }*/
 
-    public ApplicationContext(string host, string port, string database, string user, string password)
+    public ApplicationContext(string connectionString)
     {
-        ConnectionString = "Host=" + host + ";Port=" + port + ";Database=" + database + ";Username=" + user + ";Password" + password;
+        ConnectionString = connectionString;
     }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(new ConfigurationBuilder()
+        if (ConnectionString != null)
+        {
+            optionsBuilder.UseNpgsql(ConnectionString);
+        }
+        /*optionsBuilder.UseNpgsql(new ConfigurationBuilder()
                                         .SetBasePath(PathToConnectionFile)
                                         .AddJsonFile("appsetings.json")
                                         .Build()
-                                        .GetConnectionString("DefaultConnection"));
+                                        .GetConnectionString("DefaultConnection"));*/
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -14,7 +14,7 @@ namespace repositories_app.tests
 		{
 			UserRepository userRepository =
 				new UserRepository(
-					new ApplicationContext("localhost", "5400", "student", "server_user", "server")
+					new ApplicationContext("Host=localhost;Port=5400;Database=student;Username=server_user;Password=server")
 					);
 
 			string genLogin = Guid.NewGuid().ToString();
@@ -40,14 +40,14 @@ namespace repositories_app.tests
 		{
 			UserRepository userRepository =
 				new UserRepository(
-						new ApplicationContext("localhost", "5400", "student", "server_user", "server")
+						new ApplicationContext("Host=localhost;Port=5400;Database=student;Username=server_user;Password=server")
 						);
 
 			string? exceptionMessage = null;
 
 			User user = new User
 			{
-				Login = "test_user1",
+				Login = "test-user1",
 				Password = "1234",
 			};
 			try
@@ -62,7 +62,7 @@ namespace repositories_app.tests
 
 			Assert.That(
 				exceptionMessage,
-				Is.Null,
+				Is.Not.Null,
 				"При добавлении существующего пользователя, метод репозитория это не обработал");
 		}
 
@@ -71,7 +71,7 @@ namespace repositories_app.tests
 		{
 			UserRepository userRepository =
 				new UserRepository(
-					new ApplicationContext("localhost", "5400", "student", "server_user", "server")
+					new ApplicationContext("Host=localhost;Port=5400;Database=student;Username=server_user;Password=server")
 					);
 
 			string? exceptionMessage = null;
