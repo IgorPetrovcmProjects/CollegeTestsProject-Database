@@ -13,28 +13,35 @@ public class TestRepository
         this.context = context;
     }
 
-    public async Task<Test> IsHas(string title, Guid userId)
+    public async Task<Test> IsHas(Test test, string login)
     {
-        List<Test> tests = await context.Tests.AsNoTracking().Where(x => x.UserId == userId).ToListAsync();
+        IQueryable<Test> queryableTests = context.Tests.AsNoTracking().Include(x => x.User);
 
-        if (tests.Count == 0){
-            return null;
-        }
+        List<Test> tests = await queryableTests.Where(x => x.User.Login == login).ToListAsync();
 
-        Test? test;
-
-        if ( (test = tests.FirstOrDefault(x => x.Title == title)) != null )
-        {
+        if (tests.Count == 0) {
             return test;
         }
 
-        return null;
+        if (tests.FirstOrDefault(x => x.Title == test.Title) != null ) {
+            return null;
+        }
+
+        test.User = tests[0].User;
+        test.UserId = tests[0].UserId;
+
+        return test;
     }
 
-    public async Task AddAsync(Test test)
+    public async Task AddAsync(Test test, string userLogin)
     {
-        if (await IsHas(test.Title, test.UserId) != null){
+        if ((test = await IsHas(test, userLogin)) == null){
             throw new TestRepositoryException("The user of the test not found or a test with such title already exists");
+        }
+
+        if (test.User == null)
+        {
+            
         }
 
         test.Id = Guid.NewGuid();
