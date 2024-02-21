@@ -8,13 +8,15 @@ namespace repositories_app.tests
 	[TestFixture]
 	public class RepositoryTests
 	{
-		private readonly UserRepository userRepository = 
-							new UserRepository(new ApplicationContext(@"C:\Users\Honor\Desktop\MyProjects\CollegeTestsProject\CollegeTestsProject-Database\testing-apps\repositories-app.tests\repositories-app.tests\"));
-
 		[Test]
 		[Ignore("")]
 		public async Task AddAsync_StandartAddition_Added()
 		{
+			UserRepository userRepository =
+				new UserRepository(
+					new ApplicationContext("localhost", "5400", "student", "server_user", "server")
+					);
+
 			string genLogin = Guid.NewGuid().ToString();
 
 			User user = new User
@@ -36,6 +38,11 @@ namespace repositories_app.tests
 		[Test]
 		public async Task AddAsync_AdditionExistUser_NotAdded()
 		{
+			UserRepository userRepository =
+				new UserRepository(
+						new ApplicationContext("localhost", "5400", "student", "server_user", "server")
+						);
+
 			string? exceptionMessage = null;
 
 			User user = new User
@@ -58,6 +65,38 @@ namespace repositories_app.tests
 				Is.Null,
 				"При добавлении существующего пользователя, метод репозитория это не обработал");
 		}
-		
+
+		[Test]
+		public async Task RemoveAsync_StandartRemove_UserRemoved()
+		{
+			UserRepository userRepository =
+				new UserRepository(
+					new ApplicationContext("localhost", "5400", "student", "server_user", "server")
+					);
+
+			string? exceptionMessage = null;
+
+			string currentUserLogin = "test_user1";
+			string currentUserPassword = "1234";
+
+			try
+			{
+				await userRepository.RemoveAsync(currentUserLogin, currentUserPassword);
+				await userRepository.SaveAsync();
+			}
+			catch (UserRepositoryException ex)
+			{
+				exceptionMessage = ex.Message;
+			}
+
+
+			User checkedUser = await userRepository.IsHas(currentUserLogin);
+
+			Assert.That(
+				checkedUser,
+				Is.Null,
+				exceptionMessage);
+		}
+
 	}
 }

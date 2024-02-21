@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 public class ApplicationContext : DbContext
 {
     private readonly string PathToConnectionFile;
+
+    private string? ConnectionString;
     public DbSet<User> Users => Set<User>();
 
     public DbSet<Test> Tests => Set<Test>();
@@ -18,6 +20,11 @@ public class ApplicationContext : DbContext
         PathToConnectionFile = pathToConnectionFile;
 
         Database.EnsureCreated();
+    }
+
+    public ApplicationContext(string host, string port, string database, string user, string password)
+    {
+        ConnectionString = "Host=" + host + ";Port=" + port + ";Database=" + database + ";Username=" + user + ";Password" + password;
     }
 
 

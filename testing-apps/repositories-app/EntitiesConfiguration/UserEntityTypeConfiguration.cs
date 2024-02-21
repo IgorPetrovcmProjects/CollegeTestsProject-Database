@@ -35,7 +35,6 @@ public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
 
         builder 
             .Property(x => x.Email)
-            .IsRequired()
             .HasColumnName("email");
     }
 }
