@@ -8,11 +8,10 @@ using Repository_App.Entities;
 
 public class Program 
 {
-    static async Task Main()
+    static void Main()
     {
-        string genLogin = Guid.NewGuid().ToString();
+        Guid guid = new Guid();
 
-		User user = new User();
-        
+        System.Console.WriteLine(guid);
     }
 }

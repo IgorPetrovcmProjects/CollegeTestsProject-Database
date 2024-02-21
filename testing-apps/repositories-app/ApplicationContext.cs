@@ -8,19 +8,10 @@ using Microsoft.Extensions.Configuration;
 
 public class ApplicationContext : DbContext
 {
-    private readonly string PathToConnectionFile;
-
     private string? ConnectionString;
     public DbSet<User> Users => Set<User>();
 
     public DbSet<Test> Tests => Set<Test>();
-
-    /*public ApplicationContext(string pathToConnectionFile)
-    {
-        PathToConnectionFile = pathToConnectionFile;
-
-        Database.EnsureCreated();
-    }*/
 
     public ApplicationContext(string connectionString)
     {
@@ -34,11 +25,6 @@ public class ApplicationContext : DbContext
         {
             optionsBuilder.UseNpgsql(ConnectionString);
         }
-        /*optionsBuilder.UseNpgsql(new ConfigurationBuilder()
-                                        .SetBasePath(PathToConnectionFile)
-                                        .AddJsonFile("appsetings.json")
-                                        .Build()
-                                        .GetConnectionString("DefaultConnection"));*/
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

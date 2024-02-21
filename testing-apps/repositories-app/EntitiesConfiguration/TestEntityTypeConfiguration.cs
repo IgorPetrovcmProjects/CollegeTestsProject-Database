@@ -25,7 +25,6 @@ public class TestEntityTypeConfiguration : IEntityTypeConfiguration<Test>
 
         builder
             .Property(x => x.Description)
-            .IsRequired()
             .HasColumnName("description");
     }
 }

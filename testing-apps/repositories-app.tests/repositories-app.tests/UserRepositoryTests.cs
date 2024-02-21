@@ -3,10 +3,9 @@ namespace repositories_app.tests
 	using Repository_App;
 	using Repository_App.Entities;
 	using Repository_App.Exceptions;
-	using System.IO;
 
 	[TestFixture]
-	public class RepositoryTests
+	public class UserRepositoryTests
 	{
 		private readonly string LoginUserUsingEveryhere = "test-user1";
 

@@ -3,9 +3,9 @@ namespace Repository_App.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-public class User : IDisposable
+public class User
 {
-    public Guid? Id { get; set; }
+    public Guid Id { get; set; }
 
     public string? Login { get; set; }
 
@@ -15,8 +15,9 @@ public class User : IDisposable
 
     public ICollection<Test>? Tests { get; }
 
-    public void Dispose()
+    public User(string login, string password)
     {
-        
+        Login = login;
+        Password = password;
     }
 }

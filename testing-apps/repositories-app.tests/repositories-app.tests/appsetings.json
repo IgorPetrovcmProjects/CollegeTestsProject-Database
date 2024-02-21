@@ -1,5 +1,0 @@
-{
-	"ConnectionStrings": {
-		"DefaultConnection": "Host=localhost;Port=5400;Database=student;Username=server_user;Password=server"
-	}
-}
