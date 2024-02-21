@@ -12,19 +12,8 @@ public class Program
     {
         string genLogin = Guid.NewGuid().ToString();
 
-		User user = new User
-		{
-			Login = genLogin.Substring(0, genLogin.Length - 18),
-			Password = "1234",
-			Email = "testmail.com"
-		};
+		User user = new User();
         
         UserRepository rep = new UserRepository(new ApplicationContext(@"C:\Users\Honor\Desktop\MyProjects\CollegeTestsProject\CollegeTestsProject-Database\testing-apps\repositories-app"));
-
-        await rep.AddUserAsync(user);
-
-        await rep.SaveAsync();
-
-        System.Console.WriteLine(await rep.IsHasUser(user.Login));
     }
 }

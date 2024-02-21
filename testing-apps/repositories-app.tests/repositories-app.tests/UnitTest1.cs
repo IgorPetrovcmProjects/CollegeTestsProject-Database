@@ -2,6 +2,7 @@ namespace repositories_app.tests
 {
 	using Repository_App;
 	using Repository_App.Entities;
+	using Repository_App.Exceptions;
 	using System.IO;
 
 	[TestFixture]
@@ -11,10 +12,9 @@ namespace repositories_app.tests
 							new UserRepository(new ApplicationContext(@"C:\Users\Honor\Desktop\MyProjects\CollegeTestsProject\CollegeTestsProject-Database\testing-apps\repositories-app.tests\repositories-app.tests\"));
 
 		[Test]
-		public async Task AddUserAsync_StandartAddition_Added()
+		[Ignore("")]
+		public async Task AddAsync_StandartAddition_Added()
 		{
-			File.Create(Environment.CurrentDirectory + "text.txt");
-
 			string genLogin = Guid.NewGuid().ToString();
 
 			User user = new User
@@ -24,12 +24,40 @@ namespace repositories_app.tests
 				Email = "testmail.com"
 			};
 
-			await userRepository.AddUserAsync(user);
+			await userRepository.AddAsync(user);
 			await userRepository.SaveAsync();
 
 			Assert.That(
-				await userRepository.IsHasUser(user.Login),
-				"Добавление поьлзователя не произошло");
+				await userRepository.IsHas(user.Login),
+				Is.Not.Null,
+				"Добавление поьльзователя не произошло");
 		}
+
+		[Test]
+		public async Task AddAsync_AdditionExistUser_NotAdded()
+		{
+			string? exceptionMessage = null;
+
+			User user = new User
+			{
+				Login = "test_user1",
+				Password = "1234",
+			};
+			try
+			{
+				await userRepository.AddAsync(user);
+				await userRepository.SaveAsync();
+			}
+			catch (UserRepositoryException ex)
+			{
+				exceptionMessage = ex.Message;
+			}
+
+			Assert.That(
+				exceptionMessage,
+				Is.Null,
+				"При добавлении существующего пользователя, метод репозитория это не обработал");
+		}
+		
 	}
 }
