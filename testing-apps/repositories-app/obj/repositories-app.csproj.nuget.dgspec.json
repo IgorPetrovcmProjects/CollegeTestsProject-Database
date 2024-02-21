@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\igorp\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj": {}
+    "c:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj": {}
   },
   "projects": {
-    "C:\\Users\\igorp\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj": {
+    "c:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\igorp\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj",
+        "projectUniqueName": "c:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj",
         "projectName": "repositories-app",
-        "projectPath": "C:\\Users\\igorp\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj",
-        "packagesPath": "C:\\Users\\igorp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\igorp\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\obj\\",
+        "projectPath": "c:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj",
+        "packagesPath": "C:\\Users\\Honor\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\igorp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Honor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -69,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

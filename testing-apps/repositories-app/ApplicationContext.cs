@@ -8,12 +8,15 @@ using Microsoft.Extensions.Configuration;
 
 public class ApplicationContext : DbContext
 {
+    private readonly string PathToConnectionFile;
     public DbSet<User> Users => Set<User>();
 
     public DbSet<Test> Tests => Set<Test>();
 
-    public ApplicationContext()
+    public ApplicationContext(string pathToConnectionFile)
     {
+        PathToConnectionFile = pathToConnectionFile;
+
         Database.EnsureCreated();
     }
 
@@ -21,7 +24,7 @@ public class ApplicationContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(new ConfigurationBuilder()
-                                        .SetBasePath(Environment.CurrentDirectory)
+                                        .SetBasePath(PathToConnectionFile)
                                         .AddJsonFile("appsetings.json")
                                         .Build()
                                         .GetConnectionString("DefaultConnection"));
