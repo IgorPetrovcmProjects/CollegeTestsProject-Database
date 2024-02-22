@@ -28,10 +28,15 @@ public class TestRepository
         if ((sampleTest = tests.FirstOrDefault(x => x.Title == test.Title)) != null ) {
             return test;
         }
+        sampleTest = new Test()
+        {
+            Title = test.Title ?? null,
+            Description = test.Description ?? null,
+            User = tests[0].User,
+            UserId = tests[0].UserId
+        };
 
-        test.User = tests[0].User;
-
-        return test;
+        return sampleTest;
     }
 
     public async Task AddAsync(Test test, string userLogin)
@@ -40,25 +45,26 @@ public class TestRepository
 
         if (sampleTest != null)
         {
-            if ((sampleTest = await IsHas(test, userLogin)).Title == test.Title){
+            if (sampleTest.User == null){
                     throw new TestRepositoryException("The user of the test not found or a test with such title already exists");
                 }
         }
         else {
             sampleTest = test;
-        }
 
-        if (sampleTest.User == null)
-        {
-            try 
+            if (sampleTest.User == null)
             {
-                User user = await context.Users.FirstOrDefaultAsync(x => x.Login == userLogin); 
+                try 
+                {
+                    User user = await context.Users.FirstOrDefaultAsync(x => x.Login == userLogin); 
 
-                sampleTest.User = user;
-            }
-            catch  
-            {
-                throw new TestRepositoryException("The user with this login not found");
+                    sampleTest.UserId = user.Id;
+                    sampleTest.User = user;
+                }
+                catch  
+                {
+                    throw new TestRepositoryException("The user with this login not found");
+                }
             }
         }
 
