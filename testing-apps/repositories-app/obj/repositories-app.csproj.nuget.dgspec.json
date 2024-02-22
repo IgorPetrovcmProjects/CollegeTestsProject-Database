@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj": {}
+    "c:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj": {
+    "c:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj",
+        "projectUniqueName": "c:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj",
         "projectName": "repositories-app",
-        "projectPath": "C:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj",
+        "projectPath": "c:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\repositories-app.csproj",
         "packagesPath": "C:\\Users\\Honor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\obj\\",
+        "outputPath": "c:\\Users\\Honor\\Desktop\\MyProjects\\CollegeTestsProject\\CollegeTestsProject-Database\\testing-apps\\repositories-app\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Honor\\AppData\\Roaming\\NuGet\\NuGet.Config",

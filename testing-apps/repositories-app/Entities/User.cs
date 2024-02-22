@@ -15,6 +15,11 @@ public class User
 
     public ICollection<Test>? Tests { get; }
 
+    public User() 
+    {
+
+    }
+    
     public User(string login, string password)
     {
         Login = login;

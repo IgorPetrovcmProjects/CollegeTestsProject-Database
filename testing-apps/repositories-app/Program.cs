@@ -8,10 +8,20 @@ using Repository_App.Entities;
 
 public class Program 
 {
-    static void Main()
+    static async Task Main()
     {
-        Guid guid = new Guid();
+        TestRepository testRepository = 
+            new TestRepository(
+                new ApplicationContext("Host=localhost;Port=5400;Database=student;Username=server_user;Password=server")
+            );
 
-        System.Console.WriteLine(guid);
+        Test test1 = new Test()
+        {
+	        Title = "test1",
+	        Description = "random"
+        };
+
+        await testRepository.AddAsync(test1, "test-rep-user1");
+        await testRepository.SaveAsync();
     }
 }
