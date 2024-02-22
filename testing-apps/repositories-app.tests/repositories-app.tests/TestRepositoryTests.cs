@@ -71,5 +71,59 @@
 				@"Тест ""test1"" для пользователя ""test-rep-user1"" не был добавлен");
 		}
 
+		[Test, Order(3)]
+		public async Task AddAsync_SingleTestWhichAlreadyExists_NotAdded()
+		{
+			TestRepository testRepository =
+				new TestRepository(
+					new ApplicationContext("Host=localhost;Port=5400;Database=student;Username=server_user;Password=server")
+					);
+
+			string? exceptionMessage = null;
+
+			Test test1 = new Test()
+			{
+				Title = PatternTitle + "1",
+				Description = "random"
+			};
+
+			try
+			{
+				await testRepository.AddAsync(test1, PatternLogin + "1");
+				await testRepository.SaveAsync();
+			}
+			catch (TestRepositoryException ex)
+			{
+				exceptionMessage = ex.Message;
+			}
+
+			Assert.That(
+				exceptionMessage,
+				Is.Not.Null,
+				"Попытка добавить существующий тест пользователю, никак не была обработы репозиторием");
+		}
+
+		[Test, Order(4)]
+		public async Task AddAsync_SingleTest_AddedNewTest()
+		{
+			TestRepository testRepository =
+				new TestRepository(
+					new ApplicationContext("Host=localhost;Port=5400;Database=student;Username=server_user;Password=server")
+					);
+
+			Test test1 = new Test()
+			{
+				Title = PatternTitle + "2",
+				Description = "random"
+			};
+
+			await testRepository.AddAsync(test1, PatternLogin + "1");
+			await testRepository.SaveAsync();
+
+			Assert.That(
+				testRepository.IsHas(test1, PatternLogin + "1"),
+				Is.Not.Null,
+				@"Не был добавлен тест ""test2"" пользователю ""test-rep-user1""");
+		}
 	}
 }
